@@ -4,7 +4,7 @@
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
-    "cd purple-pumpkins && npm install && npm run dev": {
+    "start": {
       "name": "cd purple-pumpkins && npm install && npm run dev",
       "command": "cd purple-pumpkins && npm install && npm run dev",
       "runAtStart": true

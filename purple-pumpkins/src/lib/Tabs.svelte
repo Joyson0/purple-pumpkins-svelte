@@ -3,12 +3,28 @@
 	import IncExp from "./IncExp.svelte";
 	let currentpage = "IncExp";
 </script>
-<div class="tabs">
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link {currentpage == 'Sales' ? 'active' : 'none'}" aria-current="page" on:click={()=> currentpage = "Sales"}>Sales</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {currentpage == 'IncExp' ? 'active' : 'none'}" on:click={()=>currentpage = "IncExp"}>Inc&Exp</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {currentpage == 'Tab3' ? 'active' : 'none'}" on:click={()=>currentpage = "Tab3"}>Tab3</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {currentpage == 'Attendance' ? 'active' : 'none'}" on:click={()=>currentpage = "Attendance"}>Attendance</a>
+  </li>
+</ul>
+
+<!-- <div class="tabs">
 <button class="tablink" on:click={()=> currentpage = "Sales"}>Sales</button>
 <button class="tablink" on:click={()=>currentpage = "IncExp"}>Inc&Exp</button>
 <button class="tablink" on:click={()=>currentpage = "Tab3"}>Tab3</button>
 <button class="tablink" on:click={()=>currentpage = "Tab4"}>Attendance</button>
-</div>
+</div> -->
 <div id="Sales" class="tabcontent" style="display: {currentpage == 'Sales' ? 'block' : 'none'}">
 	<Sales/>
 </div>
@@ -21,8 +37,8 @@
 	<h3>Tab3</h3>
 </div>
 
-<div id="About" class="tabcontent" style="display: {currentpage == 'Tab4' ? 'block' : 'none'}">
-	<h3>Tab4</h3>
+<div id="About" class="tabcontent" style="display: {currentpage == 'Attendance' ? 'block' : 'none'}">
+	<h3>Attendance</h3>
 </div>
 
 <style>
