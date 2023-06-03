@@ -1,6 +1,9 @@
 <script>
- export let rows;
+ export let sales;
  export let setValue;
+ import {onMount} from 'svelte'
+ onMount(()=>{console.log("table mounted")})
+ 
 </script>
 
 <div class="container" >
@@ -18,15 +21,15 @@
 		</tr>
 	</thead>
 	<tbody>
-	{#each rows as row}
-		<tr id={row.id}>
-			<td><input name="pos" type="number" on:blur={setValue} bind:value={row.pos}></td>
-			<td><input name="invoice" type="number" on:blur={setValue} bind:value={row.invoice}></td>
-			<td><input name="beforeDiscount" type="number" on:blur={setValue} bind:value={row.beforeDiscount}></td>
-			<td><input name="cash" type="number" on:blur={setValue} bind:value={row.cash}></td>
-			<td><input name="card" type="number" on:blur={setValue} bind:value={row.card}></td>
-			<td><input name="upi" type="number" on:blur={setValue} bind:value={row.upi}></td>
-			<td><input name="remarks" type="text" on:blur={setValue} bind:value={row.remarks}></td>
+	{#each sales as sale}
+		<tr id={sale.id}>
+			<td><input name="pos" type="number" on:blur={setValue} bind:value={sale.pos}></td>
+			<td><input name="invoice" type="number" on:blur={setValue} bind:value={sale.invoice}></td>
+			<td><input name="beforeDiscount" type="number" on:blur={setValue} bind:value={sale.beforeDiscount}></td>
+			<td><input name="cash" type="number" on:blur={setValue} bind:value={sale.cash}></td>
+			<td><input name="card" type="number" on:blur={setValue} bind:value={sale.card}></td>
+			<td><input name="upi" type="number" on:blur={setValue} bind:value={sale.upi}></td>
+			<td><input name="remarks" type="text" on:blur={setValue} bind:value={sale.remarks}></td>
 		</tr>
 		{/each}
 	</tbody>

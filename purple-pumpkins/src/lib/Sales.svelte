@@ -2,9 +2,10 @@
   import AddButton from "./AddButton.svelte";
   import SaleSummary from "./SaleSummary.svelte";
   import SaleTable from "./SaleTable.svelte";
-  // let cash1, card1, upi1, cash2, card2, upi2;
+  import ApiCall from "./ApiCall.svelte"
+  import { details } from '../stores.js'
   let sale_summaryObj = {};
-  let rows = [
+  let sales = [
     {
       id: 0,
       pos: "1",
@@ -16,60 +17,60 @@
       remarks: ""
     }
   ];
+  
+  async function update(){
+		let url = "https://script.google.com/macros/s/AKfycbwkkdxW44NAL4-FXcDP5-9BkVw9y_GzaBycSc12V4ZUdD-XL7IZiV5isuvVKKxIExTRWg/exec"
+    let preUrl = "https://api.allorigins.win/raw?url="
+    let res = await fetch(url, {cache: "no-store"})
+		let exp = await res.json()
+		sales = exp.sales
+		// console.log(exp)
+  }
+  $: sales = $details.sales
+    
+  $:{
+    // Code to run when myVariable changes
+    console.log("sales change:", sales);
+    // Call your function here
+    setValue();
+  };
 
-  function setValue(e) {
-    // let id = e.target.parentElement.parentElement.id;
-    // let objName = e.target.name;
-    // let value = e.target.value;
-    // rows[id][objName] = value;
-    console.log(rows);
-    let poss = new Set(rows.map(row => row.pos));
+  function setValue() {
+
+    let poss = new Set(sales.map(sale => sale.pos));
     sale_summaryObj = {};
     poss.forEach(pos => {
       sale_summaryObj[pos] = {
-        cash: rows
-          .filter(function(row) {
-            return row.pos == pos;
+        cash: sales
+          .filter(function(sale) {
+            return sale.pos == pos;
           })
-          .reduce((acc, row) => acc + Number(row.cash), 0),
-        card: rows
-          .filter(function(row) {
-            return row.pos == pos;
+          .reduce((acc, sale) => acc + Number(sale.cash), 0),
+        card: sales
+          .filter(function(sale) {
+            return sale.pos == pos;
           })
-          .reduce((acc, row) => acc + Number(row.card), 0),
-        upi: rows
-          .filter(function(row) {
-            return row.pos == pos;
+          .reduce((acc, sale) => acc + Number(sale.card), 0),
+        upi: sales
+          .filter(function(sale) {
+            return sale.pos == pos;
           })
-          .reduce((acc, row) => acc + Number(row.upi), 0)
+          .reduce((acc, sale) => acc + Number(sale.upi), 0)
       };
     });
   }
-  // $: {
-  //   let floor1 = rows.filter(function(row) {
-  //     return row.floor == "1";
-  //   });
-  //   cash1 = floor1.reduce((acc, row) => acc + Number(row.cash), 0);
-  //   card1 = floor1.reduce((acc, row) => acc + Number(row.card), 0);
-  //   upi1 = floor1.reduce((acc, row) => acc + Number(row.upi), 0);
-  //   let floor2 = rows.filter(function(row) {
-  //     return row.floor == "2";
-  //   });
-  //   cash2 = floor2.reduce((acc, row) => acc + Number(row.cash), 0);
-  //   card2 = floor2.reduce((acc, row) => acc + Number(row.card), 0);
-  //   upi2 = floor2.reduce((acc, row) => acc + Number(row.upi), 0);
-  // }
 </script>
 
 <SaleSummary {sale_summaryObj}/>
-<SaleTable {setValue} {rows} />
+<ApiCall {update}/>
+<SaleTable {setValue} sales = {sales} />
 
   <br>
 <AddButton add={() => {
-  rows = [...rows, {
-    id: rows.length,
-    pos: rows[rows.length - 1].pos,
-    invoice: Number(rows[rows.length - 1].invoice) + 1,
+  sales = [...sales, {
+    id: sales.length,
+    pos: sales[sales.length - 1].pos,
+    invoice: Number(sales[sales.length - 1].invoice) + 1,
     beforeDiscount: null,
     cash: null,
     card: null,

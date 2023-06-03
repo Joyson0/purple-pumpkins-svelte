@@ -1,7 +1,7 @@
 <script>
 	import Sales from "./Sales.svelte";
 	import IncExp from "./IncExp.svelte";
-	let currentpage = "IncExp";
+	let currentpage = "Sales";
 </script>
 
 <ul class="nav nav-tabs">
