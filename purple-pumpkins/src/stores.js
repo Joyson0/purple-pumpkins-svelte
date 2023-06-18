@@ -15,3 +15,21 @@ export let details = writable({
     },
   ],
 });
+
+export let shopCodeStore = writable("");
+export let dateStore = writable(new Date().toISOString().split("T")[0]);
+
+export let salesStore = writable([
+  {
+    id: 0,
+    pos: "1",
+    invoice: "",
+    beforeDiscount: "",
+    cash: "",
+    card: "",
+    upi: "",
+    remarks: "",
+  },
+]);
+
+export let expensesStore = writable(null);

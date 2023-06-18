@@ -1,0 +1,118 @@
+// COLLECTIONS
+// shops
+
+{   "id": "string",
+    "name": "stirng",
+    "shopCode": "string",
+    "address": "string",
+    "gst": "string",
+    "staffs": ["objectIds"]
+}
+
+// staffs
+
+staffs = {   "id": "string",
+    "name": "string",
+    "workHours": {
+        "monday": "number",
+        "tuesday": "number",
+        "wednesday": "number",
+        "thursday": "number",
+        "friday": "number",
+        "saturday": "number",
+        "sunday": "number"
+    },
+    "salary": "number",
+    "phone": "string"
+}
+
+// attendance
+
+{
+    "id": "string",
+    "date": "date",
+    "attendance": [{
+        "staff": "objectId",
+        "timeIn": "time",
+        "timeOut": "time",
+        "betweenOffHours": "number",
+        "remarks": "string"
+    }] 
+}
+
+// outstanding
+
+outstanding = {
+    "id": "string",
+    "shopCode": "string",
+    "date": "date",
+    "purchases": [
+        {
+            "invoice": "string",
+            "supplier": "string",
+            "amount": "number"
+        }    
+    ],
+    "payments": [
+        {
+            "mop": {
+                "cash": {
+                    "amount": "number"
+                },
+                "cheque": {
+                    "amount": "number",
+                    "chequeNumber": "string",
+                    "chequeDate": "date"
+                },
+                "bankTransfer": {
+                    "amount": "number",
+                }
+            }
+        }
+    ],
+    "returns": [
+        {
+            "purchaseReturn": "string",
+            "amount": "number"
+        }
+    ]
+}
+
+// sales
+sales = {
+    "id": "string",
+    "shopCode": "string",
+    "date": "date",
+    "sales":[{"pos": "number",
+    "invoice": "number",
+    "beforeDiscount": "number",
+    "cash": "number",
+    "card": "number",
+    "upi": "number",
+    "remarks": "string"}]
+    
+}
+
+// income
+
+{
+    "id": "string",
+    "shopCode": "string",
+    "date": "date",
+    "openingBalance": "number",
+    "netCashSales": "$sale.sum(cash)",
+}
+
+//expCategory
+{
+    "id": "string",
+    "name": "string",
+}
+
+// expenses
+{
+    "id": "string",
+    "shopCode": "string",
+    "date": "date",
+    "expenses": [{ "id": "string", "description": "string", "amount": "number", "category": "string" }]
+}

@@ -1,10 +1,14 @@
 <script>
   import App from "$lib/App.svelte";
-  // export let data;
-  // $: ({ shops } = data);
+  import { salesStore, expensesStore } from "../../stores.js";
+  export let data;
+
+  $: ({ sales, expenses } = data);
+  $: expensesStore.set(expenses);
+  $: salesStore.set(sales);
 </script>
 
 <App />
-<!-- {#each shops as shop}
-  <p><a href="/login/{shop.code}">{shop.name}</a></p>
+<!-- {#each sales as sale}
+  <p><a href="/login/{sale.pos}">{sale.remarks}</a></p>
 {/each} -->

@@ -1,4 +1,3 @@
-import path from "path";
 import { start_mongo } from "./db/mongo";
 import { redirect } from "@sveltejs/kit";
 

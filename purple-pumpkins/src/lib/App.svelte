@@ -1,22 +1,16 @@
 <script>
   import Tabs from "./Tabs.svelte";
+  import Header from "./Header.svelte";
   import { onMount } from "svelte";
   import { details } from "../stores.js";
 
-  async function handleClick() {
-    const d = await fetch("/getsheet");
-    let jsn = d.json();
-    console.log(jsn);
-  }
-
-  onMount(async () => {
-    let url =
-      "https://script.google.com/macros/s/AKfycbwkkdxW44NAL4-FXcDP5-9BkVw9y_GzaBycSc12V4ZUdD-XL7IZiV5isuvVKKxIExTRWg/exec";
-    let preUrl = "https://api.allorigins.win/raw?url=";
-    let res = await fetch(url, { cache: "no-store" });
-    $details = await res.json();
-    console.log($details);
-  });
+  // onMount(async () => {
+  //   let url =
+  //     "https://script.google.com/macros/s/AKfycbwkkdxW44NAL4-FXcDP5-9BkVw9y_GzaBycSc12V4ZUdD-XL7IZiV5isuvVKKxIExTRWg/exec";
+  //   let preUrl = "https://api.allorigins.win/raw?url=";
+  //   let res = await fetch(url, { cache: "no-store" });
+  //   $details = await res.json();
+  // });
 </script>
 
 <head>
@@ -26,7 +20,7 @@
   />
 </head>
 <main>
-  <button on:click={handleClick}>click</button>
+  <Header />
   <Tabs />
 </main>
 

@@ -1,40 +1,88 @@
 <script>
- export let sales;
- export let setValue;
- import {onMount} from 'svelte'
- onMount(()=>{console.log("table mounted")})
- 
+  export let sales;
+  export let setValue;
 </script>
 
-<div class="container" >
-<table border="1">
-	<caption>Sales</caption>
-	<thead>
-		<tr>
-			<th>POS</th>
-			<th>Invoice</th>
-			<th>B4Disc</th>
-			<th>Cash</th>
-			<th>Card</th>
-			<th>UPI</th>
-			<th>Remarks</th>
-		</tr>
-	</thead>
-	<tbody>
-	{#each sales as sale}
-		<tr id={sale.id}>
-			<td><input name="pos" type="number" on:blur={setValue} bind:value={sale.pos}></td>
-			<td><input name="invoice" type="number" on:blur={setValue} bind:value={sale.invoice}></td>
-			<td><input name="beforeDiscount" type="number" on:blur={setValue} bind:value={sale.beforeDiscount}></td>
-			<td><input name="cash" type="number" on:blur={setValue} bind:value={sale.cash}></td>
-			<td><input name="card" type="number" on:blur={setValue} bind:value={sale.card}></td>
-			<td><input name="upi" type="number" on:blur={setValue} bind:value={sale.upi}></td>
-			<td><input name="remarks" type="text" on:blur={setValue} bind:value={sale.remarks}></td>
-		</tr>
-		{/each}
-	</tbody>
-</table>
+<div class="container">
+  <table border="1">
+    <caption>Sales</caption>
+    <thead>
+      <tr>
+        <th>POS</th>
+        <th>Invoice</th>
+        <th>B4Disc</th>
+        <th>Cash</th>
+        <th>Card</th>
+        <th>UPI</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each sales as sale}
+        <tr>
+          <!-- <tr id={sale.id}/> -->
+          <td>
+            <input
+              name="pos"
+              type="number"
+              on:blur={setValue}
+              bind:value={sale.pos}
+            />
+          </td>
+          <td>
+            <input
+              name="invoice"
+              type="number"
+              on:blur={setValue}
+              bind:value={sale.invoice}
+            /></td
+          >
+          <td
+            ><input
+              name="beforeDiscount"
+              type="number"
+              on:blur={setValue}
+              bind:value={sale.beforeDiscount}
+            /></td
+          >
+          <td
+            ><input
+              name="cash"
+              type="number"
+              on:blur={setValue}
+              bind:value={sale.cash}
+            /></td
+          >
+          <td
+            ><input
+              name="card"
+              type="number"
+              on:blur={setValue}
+              bind:value={sale.card}
+            /></td
+          >
+          <td
+            ><input
+              name="upi"
+              type="number"
+              on:blur={setValue}
+              bind:value={sale.upi}
+            /></td
+          >
+          <td
+            ><input
+              name="remarks"
+              type="text"
+              on:blur={setValue}
+              bind:value={sale.remarks}
+            /></td
+          >
+        </tr>
+      {/each}
+    </tbody>
+  </table>
 </div>
+
 <style>
   div.container {
     display: flex;
