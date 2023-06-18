@@ -4,7 +4,8 @@ import { dateStore, shopCodeStore } from "../../stores";
 // /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ cookies }) => {
   shopCodeStore.set(cookies.get("shopCode"));
-  return await getDbData(cookies.get("shopCode"));
+  let date = new Date().toISOString().split("T")[0];
+  return await getDbData(cookies.get("shopCode"), date);
 };
 
 /** @type {import('./$types').Actions} */
