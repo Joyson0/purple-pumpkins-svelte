@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { dateStore, salesStore, expensesStore } from "../stores.js";
+  import { goto } from "$app/navigation";
 
   let shopName;
   let date = $dateStore;
@@ -17,7 +18,7 @@
   }
 
   function logout() {
-    document.cookie = `access=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+    goto("logout");
   }
   onMount(() => {
     shopName = getCookie("shopName");

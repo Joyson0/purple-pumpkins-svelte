@@ -8,7 +8,8 @@ start_mongo()
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
   let pathname = event.url.pathname;
-  let isAccess = event.cookies.get("access");
+  let access = event.cookies.get("access");
+  let isAccess = access === "true";
 
   if (pathname === "/login") {
     if (isAccess) {
@@ -19,7 +20,12 @@ export async function handle({ event, resolve }) {
       return response;
     }
   }
-
+  if (pathname == "/logout") {
+    event.cookies.set("access", false, { path: "/", sameSite: "strict" });
+    event.cookies.set("shopCode", "", { path: "/", sameSite: "strict" });
+    event.cookies.set("shopName", "", { path: "/", sameSite: "strict" });
+    throw redirect(307, "/login");
+  }
   if (!isAccess) {
     // Access is not granted, redirect to login page
     throw redirect(307, "/login");
