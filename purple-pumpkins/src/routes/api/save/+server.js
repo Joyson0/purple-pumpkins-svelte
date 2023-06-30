@@ -22,7 +22,5 @@ export async function POST(event) {
     { $set: { expenses: expenses } },
     { upsert: true }
   );
-  return new Response({
-    status: 200,
-  });
+  return new Response({ status: 200 });
 }
