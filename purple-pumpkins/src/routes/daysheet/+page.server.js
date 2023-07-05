@@ -1,11 +1,12 @@
 import { salesCollection, expensesCollection } from "../../db/collections";
-import { dateStore, shopCodeStore } from "../../stores";
+import { shopCodeStore } from "../../stores";
 
 // /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ cookies }) => {
-  shopCodeStore.set(cookies.get("shopCode"));
+  const shopCode = cookies.get("shopCode");
+  shopCodeStore.set(shopCode);
   let date = new Date().toISOString().split("T")[0];
-  return await getDbData(cookies.get("shopCode"), date);
+  return await getDbData(shopCode, date);
 };
 
 /** @type {import('./$types').Actions} */

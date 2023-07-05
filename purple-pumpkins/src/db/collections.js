@@ -5,4 +5,4 @@ export const shopsCollection = db.collection("shops");
 export const staffsCollection = db.collection("staffs");
 export const salesCollection = db.collection("sales");
 export const expensesCollection = db.collection("expenses");
-export const outstandingCollection = db.collection("outstanding");
+export const outstandingsCollection = db.collection("outstandings");

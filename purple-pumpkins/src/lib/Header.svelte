@@ -30,6 +30,7 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        from: "daysheet",
         date: $dateStore,
         sales: $salesStore,
         expenses: $expensesStore,
