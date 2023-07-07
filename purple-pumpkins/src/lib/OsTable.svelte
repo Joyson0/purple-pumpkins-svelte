@@ -4,6 +4,7 @@
   let todate = today;
   let fromdate = today;
   let OSData = [];
+  let openingBalance = "";
   onMount(() => {
     getDates();
   });
@@ -22,8 +23,10 @@
       .then((response) => response.text())
       .then((data) => {
         // Handle the response from the server
-        OSData = JSON.parse(data);
-        OSData = JSON.parse(JSON.parse(OSData.data)[0]);
+        let OS_OpenData = JSON.parse(data);
+        OS_OpenData = JSON.parse(JSON.parse(OS_OpenData.data)[0]);
+        openingBalance = OS_OpenData.openingBalance;
+        OSData = OS_OpenData.outstandingData;
         OSData.forEach((x) => {
           switch (x.mot) {
             case "purchase":
@@ -85,13 +88,20 @@
     <th>Balance</th>
   </thead>
   <tbody>
+    <tr>
+      <td>{fromdate}</td>
+      <td>Opening Balance</td>
+      <td />
+      <td />
+      <td>{openingBalance}</td>
+    </tr>
     {#each OSData as transaction}
       <tr>
         <td>{transaction.date}</td>
         <td>{transaction.description}</td>
         <td>{transaction.in}</td>
         <td>{transaction.out}</td>
-        <td>balance</td>
+        <td>{transaction.balance}</td>
       </tr>
     {/each}
   </tbody>

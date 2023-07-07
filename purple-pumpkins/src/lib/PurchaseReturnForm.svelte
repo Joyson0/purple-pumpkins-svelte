@@ -13,6 +13,7 @@
       supplier,
       return_number,
       amount,
+      type: "out",
     });
   }
 </script>

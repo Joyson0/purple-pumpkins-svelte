@@ -13,6 +13,7 @@
       supplier,
       invoice,
       amount,
+      type: "in",
     });
   }
 </script>

@@ -28,7 +28,6 @@ export async function POST(event) {
     delete eventObj.from;
     eventObj.shopCode = shopCode;
     eventObj.date = new Date(eventObj.date);
-    console.log(eventObj);
     await outstandingsCollection.insertOne(eventObj);
   }
   return new Response({ status: 200 });

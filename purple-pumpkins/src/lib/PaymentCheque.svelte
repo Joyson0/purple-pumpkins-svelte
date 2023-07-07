@@ -13,6 +13,7 @@
       amount,
       cheque_date,
       cheque_number,
+      type: "out",
     });
   }
 </script>

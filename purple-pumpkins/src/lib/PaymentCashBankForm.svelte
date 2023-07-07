@@ -11,6 +11,7 @@
     dispatch("submit", {
       date,
       amount,
+      type: "out",
     });
   }
 </script>

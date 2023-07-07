@@ -22,5 +22,10 @@ async function getDbData(fromdate, todate, shopCode) {
     })
     .sort({ date: 1 })
     .toArray();
-  return JSON.stringify(outstandingData);
+  let balance = await outstandingsCollection.findOne(
+    { date: { $lt: fromdate }, shopCode: shopCode, balance: { $exists: true } },
+    { sort: { date: -1 }, projection: { balance: 1 } }
+  );
+  let openingBalance = balance ? balance.balance : 0;
+  return JSON.stringify({ outstandingData, openingBalance: openingBalance });
 }
